@@ -1,34 +1,47 @@
 package ru.vsu;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+
+import java.util.Iterator;
 import java.util.Map;
 
 public class LabInjector {
-    Object obj = null;
-    public <T> T injector(T object) {
+
+    public <T> void injector(T object) throws JavaException {
+        T obj = null;
         try {
             Class<?> clazz = object.getClass();
-            System.out.println(object.getClass());
             Field[] field = clazz.getDeclaredFields();
             for (Field f : field) {
                 if (f.isAnnotationPresent(Injector.class)) {
                     f.setAccessible(true);
-                    Class fieldType = f.getType();
-                    Class cl = fieldType.forName("ru.vsu.BubbleSort");
-                    obj = cl.newInstance();
+                    Class cl = Class.forName(classNameSearch(f.getType().getName()));
+                    obj = (T) cl.newInstance();
+                    f.set(object, obj);
                 }
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new JavaException(e);
         } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
+            throw new JavaException(e);
         }
-        return (T)obj;
+
+    }
+
+    private String classNameSearch(String inputFieldType){
+        WorkWithFile file = new WorkWithFile();
+        Map<String, String> map = file.toMap();
+        Iterator<Map.Entry<String, String>> itr = map.entrySet().iterator();
+        boolean flag = true;
+        String nameOfClass = null;
+        while (itr.hasNext() && flag) {
+            Map.Entry<String, String> next = itr.next();
+            String n = next.getValue();
+            if (n.equals(inputFieldType)) {
+                nameOfClass = next.getKey();
+                flag = false;
+            }
+        }
+        return nameOfClass;
     }
 }

@@ -81,13 +81,18 @@ public class WorkWithFile {
 
     public Map<String, String> toMap() {
         String[] array = new String[2];
-        Map<String, String> map = new LinkedHashMap<>();
+        Map<String, String> map = new HashMap<>();
+
         try {
+            String c;
             BufferedReader reader = new BufferedReader(new FileReader("Annotation.txt"));
-            String c = reader.readLine();
-            array = c.split("=");
-            map.put(array[0], array[1]);
+            while ((c = reader.readLine()) != null) {
+                array = c.split(" = ");
+                map.put(array[1], array[0]);
+            }
+            reader.close();
         } catch (IOException e) {
+           //reader.close();
             e.printStackTrace();
         }
         return map;

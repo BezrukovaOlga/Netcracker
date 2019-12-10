@@ -1,0 +1,1 @@
+ru.vsu.ISorter = ru.vsu.BubbleSort

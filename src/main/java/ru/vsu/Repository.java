@@ -102,7 +102,6 @@ public class Repository<T> implements IRepository<T> {
     @Override
     public void sortBy(Comparator<T> comparator) {
         sorter.sort(person, comparator);
-
     }
 
     @Override
