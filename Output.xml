@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <persons>
+        <age>21</age>
+        <birthdate>1998-08-20</birthdate>
+        <division>
+            <id>12</id>
+            <name>F</name>
+        </division>
+        <firstName>Irina</firstName>
+        <gender>FEMALE</gender>
+        <id>23</id>
+        <lastName>Chulkova</lastName>
+        <salary>67899</salary>
+        <year>1998</year>
+    </persons>
+    <persons>
+        <age>20</age>
+        <birthdate>1999-05-30</birthdate>
+        <division>
+            <id>12</id>
+            <name>I</name>
+        </division>
+        <firstName>Olga</firstName>
+        <gender>FEMALE</gender>
+        <id>45</id>
+        <lastName>Bezrukova</lastName>
+        <salary>98764</salary>
+        <year>1999</year>
+    </persons>
+    <persons>
+        <age>22</age>
+        <birthdate>1997-05-17</birthdate>
+        <division>
+            <id>45</id>
+            <name>H</name>
+        </division>
+        <firstName>Ivan</firstName>
+        <gender>MALE</gender>
+        <id>16</id>
+        <lastName>Ivanov</lastName>
+        <salary>70098</salary>
+        <year>1997</year>
+    </persons>
+</persons>

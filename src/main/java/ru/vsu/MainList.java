@@ -1,17 +1,21 @@
 package ru.vsu;
 
-import org.joda.time.Period;
+import org.xml.sax.SAXException;
 import ru.vsu.lab.entities.enums.Gender;
-import ru.vsu.lab.repository.IRepository;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Month;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainList {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, JavaException, ParserConfigurationException, SAXException {
         Person firstPerson = new Person(23, "Irina", "Chulkova", java.time.LocalDate.of(1998, Month.AUGUST, 20), Gender.FEMALE, new BigDecimal(67899), new Division(12, "F"));
         Person secondPerson = new Person(45, "Olga", "Bezrukova", java.time.LocalDate.of(1999, Month.MAY, 30), Gender.FEMALE, new BigDecimal(98764), new Division(12, "I"));
         Person thirdPerson = new Person(16, "Ivan", "Ivanov", java.time.LocalDate.of(1997, Month.MAY, 17), Gender.MALE, new BigDecimal(70098), new Division(45, "H"));
@@ -19,19 +23,17 @@ public class MainList {
         Person fivePerson = new Person(11, "Jaack", "Maven", java.time.LocalDate.of(1978, Month.OCTOBER, 21), Gender.MALE, new BigDecimal(4834), new Division(11, "U"));
         Person sixPerson = new Person(45, "Jaack", "Maven", java.time.LocalDate.of(2006, Month.DECEMBER, 25), Gender.MALE, new BigDecimal(68900), new Division(8, "N"));
 
-        Repository<Person> repository = new Repository<>();
-        repository.add(firstPerson);
-        repository.add(secondPerson);
-        repository.add(thirdPerson);
-
-
-        LabInjector inj = new LabInjector();
-        inj.injector(repository);
-        repository.sortBy(new SortedByName());
-        System.out.println(repository.toString());
-
+        /**
+         * work with xml
+         */
+        WorkWithXml work = new WorkWithXml();
+        Repository<Person> personList = new Repository<>();
+        personList.add(firstPerson);
+        personList.add(secondPerson);
+        personList.add(thirdPerson);
+        work.toXml(personList);
+        Repository<Person> personRepository = work.fromXml("Output.xml");
     }
-
 
 }
 

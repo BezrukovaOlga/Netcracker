@@ -1,13 +1,21 @@
 package ru.vsu;//import org.joda.time.LocalDate;
+
 import ru.vsu.lab.entities.IDivision;
 import ru.vsu.lab.entities.IPerson;
 import ru.vsu.lab.entities.enums.Gender;
-import java.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
+@XmlRootElement
+@XmlSeeAlso({Repository.class, Division.class, LocalDate.class})
 public class Person implements IPerson {
     private LocalDate localDate = LocalDate.now();
     private int id;
@@ -17,7 +25,6 @@ public class Person implements IPerson {
     private int age;
     private Gender sex;
     private BigDecimal salary;
-    @Injector
     private IDivision division;
 
     public Person() {
@@ -28,19 +35,18 @@ public class Person implements IPerson {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
-        this.age = Period.between(dateOfBirth,localDate).getYears();
+        this.age = Period.between(dateOfBirth, localDate).getYears();
         this.sex = sex;
         this.salary = salary;
         this.division = division;
     }
 
-
-    public void doSome(){
-        System.out.println("We are here");
-    }
-    public Integer getYear(){
+    @XmlElement
+    public Integer getYear() {
         return dateOfBirth.getYear();
     }
+
+    @XmlElement
     @Override
     public Integer getId() {
         return id;
@@ -48,9 +54,10 @@ public class Person implements IPerson {
 
     @Override
     public void setId(Integer integer) {
-        this.id=integer;
+        this.id = integer;
     }
 
+    @XmlElement
     @Override
     public String getFirstName() {
         return name;
@@ -60,6 +67,8 @@ public class Person implements IPerson {
     public void setFirstName(String s) {
         this.name = s;
     }
+
+    @XmlElement
     @Override
     public String getLastName() {
         return surname;
@@ -70,6 +79,7 @@ public class Person implements IPerson {
         this.surname = s;
     }
 
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     @Override
     public java.time.LocalDate getBirthdate() {
         return dateOfBirth;
@@ -79,11 +89,14 @@ public class Person implements IPerson {
     public void setBirthdate(java.time.LocalDate localDate) {
         this.dateOfBirth = localDate;
     }
+
+    @XmlElement
     @Override
     public Integer getAge() {
-        return Period.between(dateOfBirth,localDate).getYears();
+        return Period.between(dateOfBirth, localDate).getYears();
     }
 
+    @XmlElement
     @Override
     public Gender getGender() {
         return sex;
@@ -93,6 +106,8 @@ public class Person implements IPerson {
     public void setGender(Gender gender) {
         this.sex = gender;
     }
+
+    @XmlAnyElement
     @Override
     public IDivision getDivision() {
         return division;
@@ -100,21 +115,24 @@ public class Person implements IPerson {
 
     @Override
     public void setSalary(BigDecimal bigDecimal) {
-        this.salary=bigDecimal;
+        this.salary = bigDecimal;
     }
 
     @Override
     public void setDivision(IDivision iDivision) {
         this.division = iDivision;
     }
+
+    @XmlElement
     @Override
     public BigDecimal getSalary() {
         return salary;
     }
 
-    public void printPerson(){
-        System.out.println("ID: "+id+", Name: "+name+", Surname: "+surname+", Date of birth: "+dateOfBirth+", Age: "+age+", Gender: "+sex+", Salary: "+salary+", Division: "+division);
+    public void printPerson() {
+        System.out.println("ID: " + id + ", Name: " + name + ", Surname: " + surname + ", Date of birth: " + dateOfBirth + ", Age: " + age + ", Gender: " + sex + ", Salary: " + salary + ", Division: " + division);
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

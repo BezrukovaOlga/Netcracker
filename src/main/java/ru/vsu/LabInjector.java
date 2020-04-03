@@ -1,12 +1,12 @@
 package ru.vsu;
 
 import java.lang.reflect.Field;
-
+import org.apache.log4j.Logger;
 import java.util.Iterator;
 import java.util.Map;
 
 public class LabInjector {
-
+    private final static Logger logger = Logger.getLogger(LabInjector.class.toString());
     public <T> void injector(T object) throws JavaException {
         T obj = null;
         try {

@@ -1,7 +1,9 @@
 package ru.vsu;
 
+import org.apache.log4j.Logger;
 import ru.vsu.lab.entities.enums.Gender;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.BufferedReader;
@@ -10,8 +12,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
+@XmlRootElement
 public class WorkWithFile {
-
+    private final static Logger logger = Logger.getLogger(WorkWithFile.class.toString());
     List<Division> divisions = new ArrayList<Division>();
 
     public WorkWithFile() {
@@ -33,6 +36,7 @@ public class WorkWithFile {
         Repository newList = new Repository();
         BufferedReader reader = new BufferedReader(new FileReader("persons.csv"));
         try {
+            logger.trace("Read from file person.csv was started");
             String readLine = reader.readLine();
             while ((readLine = reader.readLine()) != null) {
                 count++;
@@ -49,10 +53,11 @@ public class WorkWithFile {
             }
             reader.close();
         } catch (IOException e) {
-            System.out.println("Error!");
+            logger.fatal("IOException! ",e);
             e.printStackTrace();
         } finally {
             reader.close();
+            logger.info("Read from file person.csv was end");
         }
         System.out.println("Count = " + count);
         return newList;

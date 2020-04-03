@@ -2,8 +2,11 @@ package ru.vsu;
 
 import ru.vsu.lab.entities.IDivision;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+@XmlRootElement
 public class Division implements IDivision {
     private Integer id;
     private String name;
@@ -16,6 +19,7 @@ public class Division implements IDivision {
         this.name = name;
     }
 
+    @XmlElement
     @Override
     public Integer getId() {
         return id;
@@ -26,6 +30,7 @@ public class Division implements IDivision {
         this.id = integer;
     }
 
+    @XmlElement
     @Override
     public String getName() {
         return name;
