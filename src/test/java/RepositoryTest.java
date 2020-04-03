@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 import ru.vsu.Division;
 import ru.vsu.Person;
 import ru.vsu.Repository;
-import ru.vsu.SortedByName;
+import ru.vsu.Sorters.SortedByName;
 import ru.vsu.lab.entities.enums.Gender;
 
 import java.math.BigDecimal;

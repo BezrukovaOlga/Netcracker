@@ -1,2 +1,2 @@
-ru.vsu.ISorted = ru.vsu.BubbleSort
-ru.vsu.ISorted = ru.vsu.InsertionSort
+ru.vsu.Sorters.ISorted = ru.vsu.Sorters.BubbleSort
+ru.vsu.Sorters.ISorted = ru.vsu.Sorters.InsertionSort

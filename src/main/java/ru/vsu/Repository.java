@@ -1,5 +1,7 @@
 package ru.vsu;
 
+import ru.vsu.Sorters.BubbleSort;
+import ru.vsu.Sorters.ISorted;
 import ru.vsu.lab.repository.IRepository;
 
 import java.util.*;

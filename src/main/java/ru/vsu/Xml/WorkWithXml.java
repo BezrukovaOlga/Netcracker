@@ -1,7 +1,10 @@
-package ru.vsu;
+package ru.vsu.Xml;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import ru.vsu.Division;
+import ru.vsu.Person;
+import ru.vsu.Repository;
 import ru.vsu.lab.entities.enums.Gender;
 
 import javax.xml.bind.JAXBContext;

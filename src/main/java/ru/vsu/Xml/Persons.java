@@ -1,4 +1,6 @@
-package ru.vsu;
+package ru.vsu.Xml;
+
+import ru.vsu.Person;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;

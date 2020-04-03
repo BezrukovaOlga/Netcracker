@@ -1,4 +1,4 @@
-package ru.vsu;
+package ru.vsu.Xml;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;

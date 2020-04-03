@@ -1,5 +1,6 @@
 package ru.vsu;//import org.joda.time.LocalDate;
 
+import ru.vsu.Xml.LocalDateAdapter;
 import ru.vsu.lab.entities.IDivision;
 import ru.vsu.lab.entities.IPerson;
 import ru.vsu.lab.entities.enums.Gender;
